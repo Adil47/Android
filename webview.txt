@@ -1,0 +1,39 @@
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.MultiAutoCompleteTextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    WebView webView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        getSupportActionBar().hide();
+
+    webView=findViewById(R.id.webview);
+    webView.getSettings().setJavaScriptEnabled(true);
+    webView.getSettings().setAppCacheEnabled(true);
+    webView.setWebViewClient(new WebViewClient());
+
+  // webView.loadUrl("https://www.dreamaway.com.pk/");
+  //      webView.loadUrl("https://www.google.com");
+        //webView.loadUrl("https://www.accuweather.com/en/pk/national/satellite");
+
+
+        webView.loadUrl("file:///android_asset/website/index.html");
+
+    }
+}

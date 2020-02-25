@@ -1,0 +1,116 @@
+//////    support in oreo with using channel
+public void BasicNotification(View view)
+    {
+
+        int notifyID = 1;
+        String CHANNEL_ID = "my_channel_01";// The id of the channel.;
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, "MyChannel", importance);
+
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(MainActivity.this,CHANNEL_ID);
+        notificationBuilder.setSmallIcon(R.drawable.ic_directions_bike_black_24dp);
+        notificationBuilder.setContentTitle("My new Notification");
+        notificationBuilder.setDefaults(Notification.DEFAULT_ALL);
+        notificationBuilder.setContentText("very important notification");
+        NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,notificationBuilder.build());
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+    }
+-----------------------------------------------------
+
+
+
+    public void BasicNotification(View view) {
+
+        Notification.Builder notificationBuilder = new Notification.Builder(MainActivity.this);
+        notificationBuilder.setSmallIcon(R.drawable.ic_brightness_4_black_24dp);
+        notificationBuilder.setContentTitle("My new Notification");
+        notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+        notificationBuilder.setContentText("very important notification");
+        NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,notificationBuilder.build());
+    }
+
+    public void ExpandedNotification(View view) {
+
+        Notification.Builder notificationBuilder = new Notification.Builder(MainActivity.this);
+        notificationBuilder.setSmallIcon(R.drawable.ic_brightness_4_black_24dp);
+        notificationBuilder.setContentTitle("My Expended Notification");
+        notificationBuilder.setContentText("very important notification");
+        notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+
+        Notification.InboxStyle inboxStyle= new Notification.InboxStyle();
+        inboxStyle.setBigContentTitle("Big Notification title");
+        for (int i = 0 ;  i < 5 ;i++)
+        {
+
+            inboxStyle.addLine("this is line"+i);
+
+        }
+        notificationBuilder.setStyle(inboxStyle);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+        notificationManager.notify(1,notificationBuilder.build());
+    }
+
+    int i=0;
+    public void ProgressNotification(View view) {
+
+        final Notification.Builder notificationBuilder = new Notification.Builder(MainActivity.this);
+        notificationBuilder.setSmallIcon(R.drawable.ic_brightness_4_black_24dp);
+        notificationBuilder.setContentTitle("My new Notification");
+        notificationBuilder.setContentText("very important notification");
+        notificationBuilder.setProgress(100,i ,false);
+        final NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+        notificationManager.notify(0,notificationBuilder.build());
+        
+        final Handler handler=new Handler();
+        Runnable runnable=new Runnable() {
+            @Override
+            public void run() {
+
+                notificationBuilder.setProgress(100,i++ ,false);
+                notificationManager.notify(0,notificationBuilder.build());
+                if(i<100)
+                    handler.postDelayed(this,1000);
+            }
+        };
+        handler.postDelayed(runnable,100);
+    }
+
+    public void HeadsUpNotification(View view) {
+        Notification.Builder notificationBuilder = new Notification.Builder(MainActivity.this);
+        notificationBuilder.setSmallIcon(R.drawable.ic_brightness_4_black_24dp);
+        notificationBuilder.setContentTitle("My new Notification");
+        notificationBuilder.setContentText("very important notification");
+        notificationBuilder.setPriority(Notification.PRIORITY_MAX);
+        notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+        notificationManager.notify(3,notificationBuilder.build());
+
+    }
+
+    public void LockScreenNotification(View view) {
+
+        final Notification.Builder notificationBuilder = new Notification.Builder(MainActivity.this);
+        notificationBuilder.setSmallIcon(R.drawable.ic_brightness_4_black_24dp);
+        notificationBuilder.setContentTitle("My new Notification");
+        notificationBuilder.setContentText("very important notification");
+        notificationBuilder.setVisibility(Notification.VISIBILITY_PUBLIC);
+        notificationBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
+        final NotificationManager notificationManager = (NotificationManager) getSystemService(MainActivity.this.NOTIFICATION_SERVICE);
+        Handler handler=new Handler();
+        Runnable runnable=new Runnable() {
+            @Override
+            public void run() {
+                notificationManager.notify(3,notificationBuilder.build());
+            }
+        };
+        handler.postDelayed(runnable,5000);
+    }
+}

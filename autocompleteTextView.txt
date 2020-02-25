@@ -1,0 +1,61 @@
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.MultiAutoCompleteTextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    AutoCompleteTextView autoCompleteTextView;
+    MultiAutoCompleteTextView multiAutoCompleteTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        String Names[]={"Abubakkar","Hassan Builder","Ahsan","Osama Khushi","Osama Haleem","Rafay","Hood butt","Sahfay"};
+
+        autoCompleteTextView=findViewById(R.id.autoCompleteTextView);
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Names);
+        autoCompleteTextView.setAdapter(adapter);
+
+
+        multiAutoCompleteTextView=findViewById(R.id.multiAutoCompleteTextView);
+        multiAutoCompleteTextView.setAdapter(adapter);
+        multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+
+
+
+    }
+}
+-----------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="259dp"
+        android:layout_height="wrap_content"
+        android:hint="enter name" />
+
+    <MultiAutoCompleteTextView
+        android:layout_below="@+id/autoCompleteTextView"
+        android:id="@+id/multiAutoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </MultiAutoCompleteTextView>
+
+
+</RelativeLayout>

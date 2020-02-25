@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ViewFlipper
+        android:id="@+id/viewflipper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txt_q1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Question 1 : what is the full form of html?" />
+            <RadioGroup
+                android:layout_below="@id/txt_q1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/rb_q1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hypertext Markup Language" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Hyper text makeup language" />
+            </RadioGroup>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txt_q2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Question 2 : Is Php client side or server side language?" />
+            <RadioGroup
+                android:layout_below="@id/txt_q2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Client Side" />
+
+                <RadioButton
+                    android:id="@+id/rb_q2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Server Side" />
+            </RadioGroup>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txt_q3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Question 3 : Python is a Compiled programming language? " />
+            <RadioGroup
+                android:layout_below="@id/txt_q3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="True" />
+
+                <RadioButton
+                    android:id="@+id/rb_q3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="False" />
+            </RadioGroup>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txt_q4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Question 4 : Android owned by Oracle." />
+            <RadioGroup
+                android:layout_below="@id/txt_q4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/rb_q4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="False" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="True" />
+            </RadioGroup>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/txt_q5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="Question 5 : Who is the creater of Java Programming language ?" />
+            <RadioGroup
+                android:layout_below="@id/txt_q5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/rb_q5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="James gosling" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Andy robin" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Linux torvald" />
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Steve Jobs" />
+
+            </RadioGroup>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/resultLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textview"
+                android:text="Your Result"
+                android:textSize="35dp"
+                android:textColor="#000"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+            <LinearLayout
+                android:layout_below="@id/textview"
+                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="20dp"
+                android:layout_height="wrap_content">
+
+                <CheckedTextView
+                    android:id="@+id/Result_q1"
+                    android:layout_margin="10dp"
+                    android:text="Question 1 : what is the full form of html?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></CheckedTextView>
+                <CheckedTextView
+                    android:id="@+id/Result_q2"
+                    android:layout_margin="10dp"
+                    android:text="Question 2 : Is Php client side or server side language?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></CheckedTextView>
+                <CheckedTextView
+                    android:id="@+id/Result_q3"
+                    android:layout_margin="10dp"
+                    android:text="Question 3 : Python is a Compiled programming language? "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></CheckedTextView>
+                <CheckedTextView
+                    android:id="@+id/Result_q4"
+                    android:layout_margin="10dp"
+                    android:text="Question 4 : Android owned by Oracle."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></CheckedTextView>
+                <CheckedTextView
+                    android:id="@+id/Result_q5"
+                    android:layout_margin="10dp"
+                    android:text="Question 5 : Who is the creater of Java Programming language ?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></CheckedTextView>
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+    </ViewFlipper>
+
+    <LinearLayout
+        android:id="@+id/btnLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="Previous"
+            android:layout_weight="1"
+
+            android:onClick="previous"
+            android:drawableLeft="@drawable/ic_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
+
+        <Button
+            android:text="Play"
+            android:layout_weight="1"
+            android:onClick="play"
+            android:drawableRight="@drawable/ic_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
+
+        <Button
+            android:text="Stop"
+            android:layout_weight="1"
+            android:onClick="stop"
+            android:drawableLeft="@drawable/ic_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
+
+        <Button
+            android:text="Next"
+            android:onClick="next"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/ic_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></Button>
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,180 @@
+----------------------------------style.xml
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#26C6DA</item>
+    </style>
+
+</resources>
+
+---------------------------------------------------
+package com.example.myapplication;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+    ChipGroup chipGroup;
+    EditText txtName;
+    LinearLayout linearLayout;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        chipGroup=findViewById(R.id.chipGroup);
+        txtName=findViewById(R.id.txtName);
+        linearLayout=findViewById(R.id.linerLayout);
+    }
+    public void add_chip(View view) {
+
+        final Chip chip=new Chip(this);
+        chip.setText(txtName.getText().toString());
+        chip.setCloseIconVisible(true);
+        chip.setCheckable(true);
+        chip.setOnCloseIconClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chipGroup.removeView(v);
+            }
+        });
+        chipGroup.addView(chip);
+    }
+    public void transferToChipGroup(View view)
+    {
+        linearLayout.removeView(view);
+        view.setOnClickListener(null);
+        Chip chip=(Chip) view;
+        chip.setCloseIconVisible(true);
+        chip.setOnCloseIconClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                chipGroup.removeView(v);
+            }
+        });
+        chipGroup.addView(view);
+    }
+    public void get_SelectedItems(View view)
+    {
+      ArrayList<View> lst= chipGroup.getTouchables();
+        String str="";
+      for(View v: lst)
+      {
+
+          Chip chip=(Chip) v;
+          if(chip.isChecked())
+          {
+              str+=chip.getText().toString()+"\n";
+          }
+
+      }
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setMessage(str).create().show();
+
+    }
+}
+---------------------------------------------------------------------
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+<LinearLayout
+    android:id="@+id/linerLayout"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.chip.Chip
+        style="@style/Widget.MaterialComponents.Chip.Filter"
+        android:text="Android"
+        android:onClick="transferToChipGroup"
+        android:id="@+id/chip1"
+        app:chipIcon="@drawable/ic_android"
+        app:chipIconEnabled="true"
+        android:checkable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.chip.Chip
+        style="@style/Widget.MaterialComponents.Chip.Entry"
+        android:text="Swift"
+        android:onClick="transferToChipGroup"
+        android:checkable="false"
+        android:id="@+id/chip2"
+        app:chipIcon="@drawable/ic_phone_iphone_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.chip.Chip
+        style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:text="Python"
+        android:onClick="transferToChipGroup"
+        app:chipIconEnabled="true"
+        android:checkable="false"
+        android:id="@+id/chip3"
+        app:chipIcon="@drawable/ic_directions_car_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <com.google.android.material.chip.Chip
+        style="@style/Widget.MaterialComponents.Chip.Action"
+        android:text="Php"
+        android:onClick="transferToChipGroup"
+        android:id="@+id/chip4"
+        android:checkable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_below="@id/linerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_alignBaseline="@id/txtName"
+       android:layout_alignParentRight="true"
+        android:onClick="add_chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_below="@id/txtName"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+<Button
+android:layout_below="@id/chipGroup"
+    android:text="get selected item"
+    android:onClick="get_SelectedItems"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"></Button>
+</RelativeLayout>

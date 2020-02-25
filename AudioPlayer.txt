@@ -1,0 +1,106 @@
+package com.example.myapplication;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.SeekBar;
+
+public class MainActivity extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
+    SeekBar seekBar;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        seekBar=findViewById(R.id.seekbar);
+
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) { }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+                mediaPlayer.seekTo(seekBar.getProgress());
+            }
+        });
+
+
+    }
+
+    public void play_audio(View view) {
+        mediaPlayer=MediaPlayer.create(this,uri);
+        mediaPlayer.start();
+        set_progress();
+    }
+
+    public void pause_audio(View view) {
+        mediaPlayer.pause();
+    }
+
+    public void stop_audio(View view) {
+        mediaPlayer.stop();
+    }
+
+    public void browse_audio(View view) {
+
+        Intent intent=new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        startActivityForResult(intent,101);
+
+    }
+    Uri uri=null;
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==101 && resultCode==RESULT_OK)
+        {
+            uri= data.getData();
+            mediaPlayer=MediaPlayer.create(this,uri);
+
+            mediaPlayer.start();
+            seekBar.setMax( mediaPlayer.getDuration());
+            set_progress();
+        }
+
+    }
+    public void set_progress()
+    {
+        final Handler handler=new Handler();
+        Runnable runnable=new Runnable() {
+            @Override
+            public void run() {
+
+                seekBar.setProgress(mediaPlayer.getCurrentPosition());
+                if(mediaPlayer.getCurrentPosition()<=mediaPlayer.getDuration())
+                handler.postDelayed(this,1000);
+            }
+        };
+        handler.postDelayed(runnable,100);
+
+    }
+
+}
+
+
+
+
+
+
+
+
+

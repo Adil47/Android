@@ -1,0 +1,133 @@
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ViewFlipper;
+
+public class MainActivity extends AppCompatActivity {
+
+    ViewFlipper viewFlipper;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        viewFlipper=findViewById(R.id.viewflipper);
+        viewFlipper.setFlipInterval(2000);
+
+
+    }
+
+    public void previous(View view) {
+        viewFlipper.showPrevious();
+    }
+
+    public void play(View view) {
+        viewFlipper.startFlipping();
+    }
+
+    public void stop(View view) {
+    viewFlipper.stopFlipping();
+    }
+
+
+    public void next(View view) {
+        viewFlipper.showNext();
+
+    }
+}
+//////////////////////////////////////////////////////////////////
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+<ViewFlipper
+    android:id="@+id/viewflipper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@drawable/img2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/images"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/img4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/img5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/splash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </RelativeLayout>
+
+
+
+</ViewFlipper>
+
+<LinearLayout
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:text="Previous"
+        android:layout_weight="1"
+
+        android:onClick="previous"
+        android:drawableLeft="@drawable/ic_previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
+    <Button
+        android:text="Play"
+        android:layout_weight="1"
+        android:onClick="play"
+        android:drawableRight="@drawable/ic_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
+    <Button
+        android:text="Stop"
+        android:layout_weight="1"
+        android:onClick="stop"
+        android:drawableLeft="@drawable/ic_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
+    <Button
+        android:text="Next"
+        android:onClick="next"
+        android:layout_weight="1"
+        android:drawableRight="@drawable/ic_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></Button>
+
+</LinearLayout>
+
+
+</RelativeLayout>

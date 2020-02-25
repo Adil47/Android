@@ -1,0 +1,141 @@
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.lang.ref.SoftReference;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+
+    ListView listView;
+    List<Tone> lst=new ArrayList<>();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        listView=findViewById(R.id.listView);
+
+
+        RingtoneManager manager=new RingtoneManager(this);
+        manager.setType(RingtoneManager.TYPE_RINGTONE);
+        Cursor cursor=manager.getCursor();
+        while(cursor.moveToNext())
+        {
+            String id=cursor.getString(0);
+            String title=cursor.getString(1);
+            Uri uri= Uri.parse(cursor.getString(2)+"/"+id);
+            lst.add(new Tone(title,uri));
+        }
+
+        ToneAdapter toneAdapter=new ToneAdapter(lst,this);
+        listView.setAdapter(toneAdapter);
+
+
+    }
+}
+
+
+class  ToneAdapter extends BaseAdapter
+{
+    List<Tone> lst;
+    Context context;
+    LayoutInflater inflater;
+     RingtoneManager manager;
+
+    public ToneAdapter(List<Tone> lst, Context context) {
+        this.lst = lst;
+        this.context = context;
+        inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+         manager=new RingtoneManager(context);
+    }
+
+    @Override
+    public int getCount() {
+        return lst.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        final Tone tone=lst.get(position);
+
+        final TextView txt=new TextView(context);
+        txt.setText(tone.title);
+        txt.setPadding(20,10,10,10);
+        txt.setTextSize(20);
+
+        txt.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                if(txt.getCurrentTextColor()==Color.GREEN)
+                {
+                    manager.stopPreviousRingtone();
+                    manager.getRingtone(context,tone.uri).stop();
+                    txt.setTextColor(Color.GRAY);
+
+                }
+                else
+                {
+                    manager.stopPreviousRingtone();
+                    manager.getRingtone(context,tone.uri).play();
+                    txt.setTextColor(Color.GREEN);
+                }
+
+
+            }
+        });
+
+       return txt;
+    }
+}
+
+
+
+
+class Tone
+{
+    public String title;
+    public Uri uri;
+
+    public Tone(String title, Uri uri) {
+        this.title = title;
+        this.uri = uri;
+    }
+}
+
+
+
+
+
+

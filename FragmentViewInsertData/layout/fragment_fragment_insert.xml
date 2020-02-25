@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment_insert">
+
+
+    <TextView
+        android:id="@+id/insertrecordtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INSERT NEW RECORD"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true">
+
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_below="@id/insertrecordtxt"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="NAME"
+        android:inputType="textPersonName"
+        android:layout_margin="20dp"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/txtPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+       android:hint="PHONE"
+        android:layout_margin="20dp"
+        ></EditText>
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="EMAIL"
+        android:layout_margin="20dp"
+        ></EditText>
+
+
+        <Button
+            android:id="@+id/btninsertrecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD NEW RECORD">
+
+        </Button>
+
+    </LinearLayout>
+</RelativeLayout>
