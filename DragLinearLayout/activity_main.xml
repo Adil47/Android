@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <com.jmedeisis.draglinearlayout.DragLinearLayout
+        android:id="@+id/draglinearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="Gate"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#EF5350"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:text="Metro"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#FF7043"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:text="Star"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#26A69A"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:text="Center"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#5C6BC0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:text="Karachi"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#FFA726"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:text="Pakistan"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#26C6DA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:text="Aptech"
+            android:padding="10dp"
+            android:textSize="25dp"
+            android:textColor="#5C6BC0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </com.jmedeisis.draglinearlayout.DragLinearLayout>
+
+
+
+</RelativeLayout>
