@@ -32,13 +32,12 @@ DragLinearLayout
 SpeechToText
 date picker Dialog
 time picker Dialog
-
-
-Search View
-scroll view
 animations
 Graphics
 gif image
+
+Search View
+scroll view
 Shared Preferences
 Default Shared Preferences
 Internal Storage
