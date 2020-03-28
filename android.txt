@@ -39,12 +39,15 @@ Shared Preferences
 Default Shared Preferences
 SearchView
 Location Provider
-
 SearchView in action bar
 intent filters
 scroll view
+bluetooth 
+
 Internal Storage
 External Storage
 ContentProvider (Video Files)
 ContentProvider (Contacts)
-bluetooth 
+
+google map
+SQLite database
