@@ -1,0 +1,4 @@
+normal service (started service) (run when our application is running in foreground)
+foregroundService   (unning in backgroud without running App)
+bound service  (when our app bind to this service)
+intentService (work 1, work 2 , work 3, .....)  (this service stop self)

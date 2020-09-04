@@ -1,0 +1,51 @@
+
+
+<uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
+--------------------------------------
+package com.example.myapplication;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.view.View;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText txtphone,txtmessage;
+    SmsManager smsManager;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        txtphone=findViewById(R.id.txtphone);
+        txtmessage=findViewById(R.id.txtmessage);
+
+        smsManager=SmsManager.getDefault();
+
+    }
+
+    public void sendsms(View view)
+    {
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this,Manifest.permission.SEND_SMS)
+                == PackageManager.PERMISSION_GRANTED) {
+            String phone=txtphone.getText().toString();
+            String sms=txtmessage.getText().toString();
+
+            smsManager.sendTextMessage(phone,null,sms,null,null);
+        }
+        else
+        {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},101);
+        }
+
+
+    }
+}

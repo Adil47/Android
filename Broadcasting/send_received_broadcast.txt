@@ -1,0 +1,28 @@
+  
+//--------------------------   Send Boradcast -------------------------------
+
+            Intent intent=new Intent("notification_broadcast");
+            intent.putExtra("title","firebase data");
+            intent.putExtra("message",remoteMessage.getData()+"");
+
+            getApplication(). sendBroadcast(intent);
+
+     
+
+
+//--------------------------   Received Broadcast -----------------------------
+
+        BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Bundle bundle=intent.getExtras();
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(bundle.getString("title"))
+                        .setMessage(bundle.getString("message"))
+                        .create()
+                        .show();
+
+            }
+        };
+        registerReceiver(broadcastReceiver,new IntentFilter("notification_broadcast"));
+//--------------------------------------------------------------------------

@@ -20,7 +20,7 @@ multiselection listview
 Audio player
 status bar notifications
 video view
-tab layout
+tab layout using ViewPager
 table layout (Calculator)
 Spinner (Country city territory)
 Calculator
@@ -46,8 +46,28 @@ bluetooth
 
 Internal Storage
 External Storage
-ContentProvider (Video Files)
-ContentProvider (Contacts)
-
-google map
+WifiManager 
+sms manager
+TelePhonyManager
+ContentProvider (Contacts) 
 SQLite database
+Web services API's Volley library 
+google map
+LoginWithGoogle Firebase
+RealTimeDatabase Firebase
+Notification Firebase
+Storage Firebase image/Video uploading
+Broadcast 
+---background  Services
+-started service
+-foreground service
+-bound/Unbound service
+-intent service
+-music play/pause/stop options in notification (using pending intent) in foreground service
+
+ContentProvider(Video Files)
+
+
+
+
+

@@ -1,0 +1,87 @@
+-----------------------------
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+
+public class MainActivity extends AppCompatActivity {
+    Switch _switch;
+    WifiManager wifiManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.CHANGE_WIFI_STATE)!= PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CHANGE_WIFI_STATE},101);
+        }
+
+
+        _switch=findViewById(R.id.switch1);
+        wifiManager= (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+
+        _switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+
+
+
+                if(b)
+                {
+                    wifiManager.setWifiEnabled(true);
+                    Toast.makeText(MainActivity.this, "Wifi Enabled", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    wifiManager.setWifiEnabled(false);
+                    Toast.makeText(MainActivity.this, "Wifi Disabled", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String str="";
+                List<ScanResult> lst= wifiManager.getScanResults();
+                for(ScanResult scanResult:lst)
+                {
+                    str+= scanResult.SSID+"\n";
+                }
+                Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
+            }
+        },new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+
+
+
+    }
+
+    public void getwifiList(View view)
+    {
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_WIFI_STATE)!= PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_WIFI_STATE},101);
+        }
+        else
+        {
+            String str="";
+
+
+            List<ScanResult> lst= wifiManager.getScanResults();
+            for(ScanResult scanResult:lst)
+            {
+
+                str+= scanResult.SSID+"\n";
+            }
+            Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+
+        }
+
+
+
+    }
+}
